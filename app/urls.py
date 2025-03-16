@@ -16,15 +16,18 @@ Including another URLconf
 """
 from django.urls import path
 from .views import landingview, productlistview, supplierlistview, addsupplier, addproduct
+from .views import deleteproduct, confirmdeleteproduct, deletesupplier, confirmdeletesupplier
 
 urlpatterns = [
     path('', landingview),
 
     path('products/', productlistview),
     path('add-product/', addproduct),
-
+    path('delete-product/<int:id>/', deleteproduct),
+    path('confirm-delete-product/<int:id>/', confirmdeleteproduct),
 
     path('suppliers/', supplierlistview),
     path('add-supplier/', addsupplier),
-
+    path('delete-supplier/<int:id>/', deletesupplier),
+    path('confirm-delete-supplier/<int:id>/', confirmdeletesupplier),
 ]
