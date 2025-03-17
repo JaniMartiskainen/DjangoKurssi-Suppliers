@@ -45,6 +45,12 @@ def edit_product_post(request, id):
         item.save()
         return redirect(productlistview)
 
+def products_filtered(request, id):
+    productlist = Product.objects.all()
+    filteredproducts = productlist.filter(supplier = id)
+    context = {'products': filteredproducts}
+    return render (request,"productlist.html",context)
+
 
 # Supplier view´s
 def supplierlistview(request):
@@ -81,6 +87,12 @@ def edit_supplier_post(request, id):
         item.address = request.POST['address']
         item.save()
         return redirect(supplierlistview)
+
+def searchsuppliers(request):
+    search = request.POST['search']
+    filtered = Supplier.objects.filter(companyname__icontains=search)
+    context = {'suppliers': filtered}
+    return render (request,"supplierlist.html",context)
 
 
 
